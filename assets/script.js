@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const highScoresList = document.getElementById('high-scores-list');
 
     // DOM elements for the question and timer page
-    const quizContainer = document.getElementById('quiz-container');
+    const questionPage = document.getElementById('question-page');
     const questionText = document.getElementById('question-text');
     const optionsContainer = document.getElementById('options-container');
     const timer = document.getElementById('timer');
@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const scoreDisplay = document.getElementById('score');
     const initialsInput = document.getElementById('initials');
     const saveScoreButton = document.getElementById('save-score');
+    const gameOverContainer = document.getElementById('game-over-container');
 
-    // Load saved initials and scores
     const savedInitials = localStorage.getItem('initials');
     const savedScore = localStorage.getItem('score');
     const savedScores = JSON.parse(localStorage.getItem('scores')) || [];
@@ -31,13 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         highScoresContainer.style.display = 'block';
     }
-
-
-    startButton.addEventListener('click', () => {
-        startQuizPage.style.display = 'none';
-        questionPage.style.display = 'block';
-        // Initialize question page (display questions and timer, etc.)
-    });
 
     // Quiz questions and state
     const questions = [
@@ -69,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function startQuiz() {
         const confirmStart = confirm('Start quiz?');
         if (confirmStart) {
-            startButton.style.display = 'none';
-            quizContainer.style.display = 'block';
+            startQuizPage.style.display = 'none';
+            questionPage.style.display = 'block';
             displayQuestion(currentQuestionIndex);
             startTimer();
         }
@@ -80,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const currentQuestion = questions[index];
         questionText.textContent = currentQuestion.question;
         optionsContainer.innerHTML = '';
-
+    
         currentQuestion.options.forEach((option, i) => {
             const optionButton = document.createElement('button');
             optionButton.classList.add('option');
@@ -117,17 +110,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }, 1000);
     }
-   
-    function showGameOverPage() {
-        questionPage.style.display = 'none';
-        gameOverPage.style.display = 'block';
-    }
 
     function endGame() {
-        quizContainer.style.display = 'none';
-        gameOverContainer.style.display = 'block';
+        questionPage.style.display = 'none';
+        gameOverPage.style.display = 'block';
         scoreDisplay.textContent = score;
-        showGameOverPage(); // Call this function to navigate to the game over page
     }
 
     function reloadPage() {
