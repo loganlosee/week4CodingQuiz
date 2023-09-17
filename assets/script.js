@@ -1,0 +1,117 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // DOM elements
+    const startButton = document.getElementById('start-button');
+    const quizContainer = document.getElementById('quiz-container');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const timer = document.getElementById('timer');
+    const gameOverContainer = document.getElementById('game-over-container');
+    const scoreDisplay = document.getElementById('score');
+    const initialsInput = document.getElementById('initials');
+    const saveScoreButton = document.getElementById('save-score');
+    const highScoresContainer = document.getElementById('high-scores-container');
+    const highScoresList = document.getElementById('high-scores-list');
+
+    // Load saved initials and scores
+    const savedInitials = localStorage.getItem('initials');
+    const savedScore = localStorage.getItem('score');
+
+    // Quiz questions and state
+    const questions = [
+        {
+            question: 'Question 1?',
+            options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+            correctAnswer: 1
+        },
+        {
+            question: 'Question 2?',
+            options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+            correctAnswer: 2
+        },
+        // Add more questions here
+    ];
+
+    let currentQuestionIndex = 0;
+    let timeLeft = 60; // Initial time in seconds
+    let score = 0;
+
+    // Display saved initials and scores if available
+    if (savedInitials && savedScore) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${savedInitials}: ${savedScore}`;
+        highScoresList.appendChild(listItem);
+        highScoresContainer.style.display = 'block';
+    }
+
+    function startQuiz() {
+        const confirmStart = confirm('Start quiz?');
+        if (confirmStart) {
+            startButton.style.display = 'none';
+            quizContainer.style.display = 'block';
+            displayQuestion(currentQuestionIndex);
+            startTimer();
+        }
+    }
+
+    function displayQuestion(index) {
+        const currentQuestion = questions[index];
+        questionText.textContent = currentQuestion.question;
+        optionsContainer.innerHTML = '';
+
+        currentQuestion.options.forEach((option, i) => {
+            const optionButton = document.createElement('button');
+            optionButton.classList.add('option');
+            optionButton.textContent = option;
+            optionButton.addEventListener('click', () => checkAnswer(i));
+            optionsContainer.appendChild(optionButton);
+        });
+    }
+
+    function checkAnswer(selectedIndex) {
+        const currentQuestion = questions[currentQuestionIndex];
+        if (selectedIndex === currentQuestion.correctAnswer) {
+            score++; // Increment the score
+        } else {
+            timeLeft -= 10; // Subtract time for incorrect answer
+        }
+        currentQuestionIndex++;
+    
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion(currentQuestionIndex);
+        } else {
+            endGame();
+        }
+    }
+
+    function startTimer() {
+        const timerInterval = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                timer.textContent = `Time: ${timeLeft}s`;
+            } else {
+                clearInterval(timerInterval);
+                endGame();
+            }
+        }, 1000);
+    }
+
+    function endGame() {
+        quizContainer.style.display = 'none';
+        gameOverContainer.style.display = 'block';
+        scoreDisplay.textContent = score;
+    }
+
+    function reloadPage() {
+        window.location.reload();
+    }
+
+    saveScoreButton.addEventListener('click', () => {
+        const initials = initialsInput.value;
+        localStorage.setItem('score', score.toString());
+        localStorage.setItem('initials', initials);
+
+        reloadPage();
+    });
+
+    startButton.addEventListener('click', startQuiz);
+});
