@@ -1,16 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // DOM elements
+    // DOM elements for the start quiz page
     const startButton = document.getElementById('start-button');
+    const startQuizPage = document.getElementById('start-quiz-page');
+    const highScoresContainer = document.getElementById('high-scores-container');
+    const highScoresList = document.getElementById('high-scores-list');
+
+    // DOM elements for the question and timer page
     const quizContainer = document.getElementById('quiz-container');
     const questionText = document.getElementById('question-text');
     const optionsContainer = document.getElementById('options-container');
     const timer = document.getElementById('timer');
-    const gameOverContainer = document.getElementById('game-over-container');
+
+    // DOM elements for the game over and save score page
+    const gameOverPage = document.getElementById('game-over-page');
     const scoreDisplay = document.getElementById('score');
     const initialsInput = document.getElementById('initials');
     const saveScoreButton = document.getElementById('save-score');
-    const highScoresContainer = document.getElementById('high-scores-container');
-    const highScoresList = document.getElementById('high-scores-list');
 
     // Load saved initials and scores
     const savedInitials = localStorage.getItem('initials');
@@ -26,6 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         highScoresContainer.style.display = 'block';
     }
+
+
+    startButton.addEventListener('click', () => {
+        startQuizPage.style.display = 'none';
+        questionPage.style.display = 'block';
+        // Initialize question page (display questions and timer, etc.)
+    });
+
     // Quiz questions and state
     const questions = [
         {
@@ -104,11 +117,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }, 1000);
     }
+   
+    function showGameOverPage() {
+        questionPage.style.display = 'none';
+        gameOverPage.style.display = 'block';
+    }
 
     function endGame() {
         quizContainer.style.display = 'none';
         gameOverContainer.style.display = 'block';
         scoreDisplay.textContent = score;
+        showGameOverPage(); // Call this function to navigate to the game over page
     }
 
     function reloadPage() {
