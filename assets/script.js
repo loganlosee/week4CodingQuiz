@@ -37,12 +37,22 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             question: 'Question 1?',
             options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
-            correctAnswer: 1
+            correctAnswer: 0
         },
         {
             question: 'Question 2?',
             options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
+            correctAnswer: 1
+        },
+        {
+            question: 'Question 3?',
+            options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
             correctAnswer: 2
+        },
+        {
+            question: 'Question 4?',
+            options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
+            correctAnswer: 3
         },
         // Add more questions here
     ];

@@ -1,0 +1,16 @@
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* Light text color */
+    text-align: center;
+}
+
+/* Styles for dark mode buttons, links, and other elements */
+body.dark-mode .btn {
+    background-color: #343a40; /* Dark button background color */
+    color: #ffffff; /* Light text color for buttons */
+}
+
+body.dark-mode a {
+    color: #bb86fc; /* Custom link color for dark mode */
+}
