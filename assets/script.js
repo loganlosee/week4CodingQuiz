@@ -15,17 +15,27 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load saved initials and scores
     const savedInitials = localStorage.getItem('initials');
     const savedScore = localStorage.getItem('score');
+    const savedScores = JSON.parse(localStorage.getItem('scores')) || [];
 
+    // Display saved initials and their highest scores if available
+    if (savedScores.length > 0) {
+        savedScores.forEach((record) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${record.initials}: ${record.score}`;
+            highScoresList.appendChild(listItem);
+        });
+        highScoresContainer.style.display = 'block';
+    }
     // Quiz questions and state
     const questions = [
         {
             question: 'Question 1?',
-            options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+            options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
             correctAnswer: 1
         },
         {
             question: 'Question 2?',
-            options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+            options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
             correctAnswer: 2
         },
         // Add more questions here
@@ -106,10 +116,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     saveScoreButton.addEventListener('click', () => {
+        // Save the score and initials as an object
         const initials = initialsInput.value;
-        localStorage.setItem('score', score.toString());
-        localStorage.setItem('initials', initials);
+        const record = { initials, score };
 
+        // Push the record to the array of saved scores
+        savedScores.push(record);
+
+        // Save the updated array to local storage
+        localStorage.setItem('scores', JSON.stringify(savedScores));
+
+        // Reload the page
         reloadPage();
     });
 
