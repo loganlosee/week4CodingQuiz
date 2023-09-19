@@ -1,16 +1,44 @@
-/* Dark mode styles */
+
 body.dark-mode {
-    background-color: #121212; /* Dark background color */
-    color: #ffffff; /* Light text color */
+    background-color: #121212; 
+    color: #ffffff;
     text-align: center;
 }
 
-/* Styles for dark mode buttons, links, and other elements */
 body.dark-mode .btn {
-    background-color: #343a40; /* Dark button background color */
-    color: #ffffff; /* Light text color for buttons */
+    background-color: #343a40;
+    color: #ffffff;
 }
 
 body.dark-mode a {
-    color: #bb86fc; /* Custom link color for dark mode */
+    color: #bb86fc;
+}
+
+#high-scores-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#high-scores-list-container {
+    max-height: 200px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    max-width: 200px;
+}
+
+#clear-scores {
+    background-color: #ff5733;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#clear-scores:hover {
+    background-color: #e5472a;
 }

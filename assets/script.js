@@ -69,6 +69,17 @@ document.addEventListener("DOMContentLoaded", function () {
         highScoresContainer.style.display = 'block';
     }
 
+    const clearScoresButton = document.getElementById('clear-scores');
+
+    clearScoresButton.addEventListener('click', () => {
+
+        localStorage.removeItem('scores');
+        
+        highScoresList.innerHTML = '';
+
+        highScoresContainer.style.display = 'none';
+    });
+
     function startQuiz() {
         const confirmStart = confirm('Start quiz?');
         if (confirmStart) {
