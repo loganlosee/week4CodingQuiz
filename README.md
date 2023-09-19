@@ -5,7 +5,7 @@ a coding quiz game, with dynamically updated CSS and HTML via JavaScript
 
 [check out the code on github](https://github.com/loganlosee/week4CodingQuiz)
 
-[take the quiz yourself](https://example.com)
+[take the quiz yourself](hhttps://loganlosee.github.io/week4CodingQuiz/)
 
 ## Getting Started
 
