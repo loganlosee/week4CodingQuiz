@@ -35,23 +35,35 @@ document.addEventListener("DOMContentLoaded", function () {
     // Quiz questions and state
     const questions = [
         {
-            question: 'Question 1?',
-            options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
+            question: 'What does HTML stand for?',
+            options: ['A) Hyper Text Markup Language',
+                    'B) High-Level Text Machine Language',
+                    'C) Hyperlinks and Text Markup Language',
+                    'D) Home Tool Markup Language'],
             correctAnswer: 0
         },
         {
-            question: 'Question 2?',
-            options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
+            question: 'In JavaScript, which keyword is used to declare a variable?',
+            options: ['A) var',
+                'B) let',
+                'C) const',
+                'D) declare'],
+            correctAnswer: 0
+        },
+        {
+            question: 'Which CSS property is used to control the spacing between elements?',
+            options: ['A) margin',
+                'B) padding',
+                'C) border',
+                'D) spacing'],
             correctAnswer: 1
         },
         {
-            question: 'Question 3?',
-            options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
-            correctAnswer: 2
-        },
-        {
-            question: 'Question 4?',
-            options: ['Option 0', 'Option 1', 'Option 2', 'Option 3'],
+            question: 'What does the acronym API stand for in programming?',
+            options: ['A) Application Process Interface',
+            'B) Advanced Programming Interface',
+            'C) Algorithmic Programming Integration',
+            'D) Application Programming Interface'],
             correctAnswer: 3
         },
         // Add more questions here
